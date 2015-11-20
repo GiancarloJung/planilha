@@ -415,7 +415,7 @@ $params->nVlValorDeclarado = 0;
 $params->sCdAvisoRecebimento = 'N';
 $matrixRateFile = fopen($service['cod']."-vtex.csv","w");
 //Headers
-fputcsv($matrixRateFile,array('ZipCodeStart','ZipCodeEnd','WeightStart','WeightEnd','AbsoluteMoneyCost','PricePercent','PriceByExtraWeight','MaxVolume','TimeCost','Country','operationType','restrictedFreights'));
+fputcsv($matrixRateFile,array('ZipCodeStart','ZipCodeEnd','WeightStart','WeightEnd','AbsoluteMoneyCost','PricePercent','PriceByExtraWeight','MaxVolume','TimeCost','Country','MinimumValueInsurance','operationType','restrictedFreights'));
 foreach($zipCodes as $zipcode){
     // Pac com contrato
     if($availableServices[3]['active']){
@@ -427,7 +427,7 @@ foreach($zipCodes as $zipcode){
                 $response = $client->CalcPrecoPrazo($params);
                 //echo 'WebService Latency: '.(int)((microtime(true)-$before)*1000)."ms\n";
                 if($response->CalcPrecoPrazoResult->Servicos->cServico->Erro == '0')
-                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$pacWeight[0]*1000,$pacWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA',1,''));
+                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$pacWeight[0]*1000,$pacWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA','0',1,''));
                 else{
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->MsgErro;
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->Codigo;
@@ -453,7 +453,7 @@ foreach($zipCodes as $zipcode){
                 $response = $client->CalcPrecoPrazo($params);
                 //echo 'WebService Latency: '.(int)((microtime(true)-$before)*1000)."ms\n";
                 if($response->CalcPrecoPrazoResult->Servicos->cServico->Erro == '0')
-                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$pacWeight[0]*1000,$pacWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA',1,''));
+                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$pacWeight[0]*1000,$pacWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA','0',1,''));
                 else{
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->MsgErro;
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->Codigo;
@@ -479,7 +479,7 @@ foreach($zipCodes as $zipcode){
                 $response = $client->CalcPrecoPrazo($params);
                 //echo 'WebService Latency: '.(int)((microtime(true)-$before)*1000)."ms\n";
                 if($response->CalcPrecoPrazoResult->Servicos->cServico->Erro == '0')
-                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$sedexWeight[0]*1000,$sedexWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA',1,''));
+                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$sedexWeight[0]*1000,$sedexWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA','0',1,''));
                 else{
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->MsgErro;
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->Codigo;
@@ -505,7 +505,7 @@ foreach($zipCodes as $zipcode){
                 $response = $client->CalcPrecoPrazo($params);
                 //echo 'WebService Latency: '.(int)((microtime(true)-$before)*1000)."ms\n";
                 if($response->CalcPrecoPrazoResult->Servicos->cServico->Erro == '0')
-                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$sedexWeight[0]*1000,$sedexWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA',1,''));
+                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$sedexWeight[0]*1000,$sedexWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA','0',1,''));
                 else{
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->MsgErro;
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->Codigo;
@@ -531,7 +531,7 @@ foreach($zipCodes as $zipcode){
                 $response = $client->CalcPrecoPrazo($params);
                 //echo 'WebService Latency: '.(int)((microtime(true)-$before)*1000)."ms\n";
                 if($response->CalcPrecoPrazoResult->Servicos->cServico->Erro == '0')
-                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$sedexWeight[0]*1000,$sedexWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA',1,''));
+                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$sedexWeight[0]*1000,$sedexWeight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA','0',1,''));
                 else{
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->MsgErro;
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->Codigo;
@@ -559,7 +559,7 @@ if($availableServices[4]['active']){
                 $response = $client->CalcPrecoPrazo($params);
                 //echo 'WebService Latency: '.(int)((microtime(true)-$before)*1000)."ms\n";
                 if($response->CalcPrecoPrazoResult->Servicos->cServico->Erro == '0')
-                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$weight[0]*1000,$weight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA',1,''));
+                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$weight[0]*1000,$weight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA','0',1,''));
                 else
                     echo $response->CalcPrecoPrazoResult->Servicos->cServico->MsgErro ." - ".$response->CalcPrecoPrazoResult->Servicos->cServico->Codigo ." - ".$zipcode[1]." a ".$zipcode[2]." - ".$weight[0]." a ".$weight[1]."\n";
             }

@@ -1,94 +1,277 @@
 <html>
-<head><title>Planilha primordia</title>
+<head><title>Integrador Correios</title>
     <style>
-        @import url(http://fonts.googleapis.com/css?family=Orbitron);
-        @import url(http://fonts.googleapis.com/css?family=Roboto);
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
+        body {
+            background-image: url(/backlogin.jpg);
+            font-family: "Helvetica Neue", Helvetica, Arial;
+            padding-top: 20px;
         }
-        .formulario {
-            font-family: Roboto, sans-serif;
-            font-size: 13px;
+
+        .container {
+            width: 406px;
+            max-width: 406px;
+            margin: 0 auto;
+        }
+
+        #signup {
+            padding: 0px 25px 25px;
+            background: #fff;
+            box-shadow:
+                0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+                0px 4px 20px rgba( 0,0,0,0.33 );
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            display: table;
+            position: static;
+        }
+
+        #signup .header {
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        #signup .header h3 {
+            color: #333333;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        #signup .header p {
+            color: #8f8f8f;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        #signup p {
+            color: #8f8f8f;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        #signup .sep {
+            height: 1px;
+            background: #e8e8e8;
+            width: 406px;
+            margin: 0px -25px;
+        }
+
+        #signup .inputs {
+            margin-top: 25px;
+        }
+
+        #signup .inputs label {
+            color: #8f8f8f;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 7px;
+            display: block;
+        }
+
+        input::-webkit-input-placeholder {
+            color:    #b5b5b5;
+        }
+
+        input:-moz-placeholder {
+            color:    #b5b5b5;
+        }
+
+        #signup .inputs input[type=email], input[type=password] {
+            background: #f5f5f5;
+            font-size: 0.8rem;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            border: none;
+            padding: 13px 10px;
+            width: 330px;
+            margin-bottom: 20px;
+            box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 );
+            clear: both;
+        }
+
+        #signup .inputs .campo .forms{
+            background: #f5f5f5;
+            font-size: 0.8rem;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            border: none;
+            padding: 13px 10px;
+            width: 330px;
+            margin-bottom: 20px;
+            box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 );
+            clear: both;
+        }
+
+        #signup .inputs .campo:focus {
+            background: #fff;
+            box-shadow: 0px 0px 0px 3px #fff38e, inset 0px 2px 3px rgba( 0,0,0,0.2 ), 0px 5px 5px rgba( 0,0,0,0.15 );
+            outline: none;
+        }
+
+        #signup .inputs input[type=email]:focus, input[type=password]:focus {
+            background: #fff;
+            box-shadow: 0px 0px 0px 3px #fff38e, inset 0px 2px 3px rgba( 0,0,0,0.2 ), 0px 5px 5px rgba( 0,0,0,0.15 );
+            outline: none;
+        }
+
+        #signup .inputs .checkboxy {
+            display: block;
+            position: static;
+            height: 25px;
+            margin-top: 10px;
+            clear: both;
+        }
+
+        #signup .inputs input[type=checkbox] {
+            float: left;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        #signup .inputs label.terms {
+            float: left;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        #signup .inputs #submit {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px 0;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-align: center;
+            text-decoration: none;
+            background: -moz-linear-gradient(
+                top,
+                #b9c5dd 0%,
+                #a4b0cb);
+            background: -webkit-gradient(
+                linear, left top, left bottom,
+                from(#b9c5dd),
+                to(#a4b0cb));
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            border: 1px solid #737b8d;
+            -moz-box-shadow:
+                0px 5px 5px rgba(000,000,000,0.1),
+                inset 0px 1px 0px rgba(255,255,255,0.5);
+            -webkit-box-shadow:
+                0px 5px 5px rgba(000,000,000,0.1),
+                inset 0px 1px 0px rgba(255,255,255,0.5);
+            box-shadow:
+                0px 5px 5px rgba(000,000,000,0.1),
+                inset 0px 1px 0px rgba(255,255,255,0.5);
+            text-shadow:
+                0px 1px 3px rgba(000,000,000,0.3),
+                0px 0px 0px rgba(255,255,255,0);
+            display: table;
+            position: static;
+            clear: both;
+        }
+
+        #signup .inputs #submit:hover {
+            background: -moz-linear-gradient(
+                top,
+                #a4b0cb 0%,
+                #b9c5dd);
+            background: -webkit-gradient(
+                linear, left top, left bottom,
+                from(#a4b0cb),
+                to(#b9c5dd));
         }
     </style>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 </head>
 <body>
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<div class="container">
 
-<center>
-    <div class="topo" style="height: 30px; width: 700px;">
-        <p class="topolink" style="margin-left: 20px;">
-            <a href="http://planilha.primordia.com.br/">Integrador correios</a> |
-            <a href="http://planilha.primordia.com.br/sobeplanilhaindex.php">Sobe planilha</a>
-        </p>
-    </div>
-    <table width=400><tr><td>
-                <div class="formulario"><div class="conteudo">
-                        <h2 style="padding-top:20px;">Integrador correios</h2>
-                        <p>Preencha os campos abaixo com os dados do correios:</p>
+    <form id="signup">
+
+        <div class="header">
+
+            <h3>Integrador Correios</h3>
+
+            <p>Preencha os campos abaixo com os dados do correios.</p>
+
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="inputs">
+
+            <p>Deseja enviar via API?</p>
+            <table><tr><td><div class="checkboxy">
+                <input name="api" id="api-sim" value="true" type="radio" class="forms api sim"/><label class="terms">Sim</label>
+            </div></td><td>
+                <div class="checkboxy">
+                    <input name="api" id="api-nao" value="false" type="radio" class="forms api nao" checked /><label class="terms">Não</label>
+                </div></td></tr></table>
+
+            <div class="api-sim">
+
+                <div class="campo"><input name="accountname" type="text" class="forms" placeholder="Nome da loja(account name):"></div>
+
+                <div class="campo"><input name="id" value="" maxlenght="60" type="text" class="forms" placeholder="Chave da api: "></div>
+
+                <div class="campo"><input name="key" value="" maxlenght="60" type="password" class="forms" placeholder="Token da api:"></div>
+
+            </div>
+            <p>Contrato com os correios?</p>
+            <table><tr><td><div class="checkboxy">
+                <input name="contrato" id="contrato-sim" value="true" type="radio" class="forms contrato sim" /><label class="terms">Sim</label>
+            </div></td><td>
+                <div class="checkboxy">
+                    <input name="contrato" id="contrato-nao" value="false" type="radio" class="forms contrato nao" checked/><label class="terms">Não</label>
+                </div></td></tr></table>
+
+            <div class="contrato-sim">
+                <div class="campo"><input name="cnpj" value="" maxlenght="60" type="text" class="forms" placeholder="Primeiros 8 digitos CNPJ (ex:01944380):"></div>
+                <div class="campo"><input name="cod_adm" value="" maxlenght="60" type="text" class="forms" placeholder="Codigo administrativo (ex:11051213):"></div>
+            </div>
+
+            <div class="campo"><input name="cep" value="" maxlenght="60" type="text" class="forms" placeholder="CEP de origem/Centro de Distribuicao (ex:20511000)"></div>
+
+            <div class="campo percentual" style="display:none;">
+                <select name="percentual" class="forms">
+                    <option value="0" selected>Percentual adicionado no pedido 0%</option>
+                    <option value="5">Percentual adicionado no pedido  5%</option>
+                </select>
+                </select>
+            </div>
+
+            <p>Selecione o servi&ccedil;o:</p>
+
+            <div class="nome_campo sedex" ><p>-  Sedex  </p></div>
+            <div class="campo sedex"><input name="sedex" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
+
+            <div class="nome_campo sedex40436" ><p>-  Sedex 40436  </p></div>
+            <div class="campo sedex40436"><input name="sedex40436" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
+
+            <div class="nome_campo esedex" ><p>-  E-sedex  </p></div>
+            <div class="campo esedex"><input name="esedex" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
+
+            <div class="nome_campo pac" ><p>-  PAC  </p></div>
+            <div class="campo pac"><input name="pac" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
 
 
-                        <form action="correios-vtex.php" enctype="multipart/form-data" id="planilha" method="post" name="planilha">
+            <!--<input type="email" placeholder="e-mail" autofocus />
+            <input type="password" placeholder="Password" />-->
 
-                            <div class="nome_campo contrato">Deseja enviar via api?: </div>
-                            <div class="campo contrato"><input name="api" value="true" type="radio" class="forms api sim"> sim <input name="api" value="false" type="radio" class="forms api nao" checked> n&atilde;o</div>
-                            <div class="api-sim">
+            <input id="submit" class="botao-enviar" title="Send" type="submit" value="Gerar arquivo">
 
-                                <div class="nome_campo" >Nome da loja(account name): </div>
-                                <div class="campo"><input name="accountname" value="" maxlenght="60" type="text" class="forms"></div>
+        </div>
 
-                                <div class="nome_campo" >Chave da api: </div>
-                                <div class="campo"><input name="id" value="" maxlenght="60" type="text" class="forms"></div>
+    </form>
 
-                                <div class="nome_campo" >Token da api: </div>
-                                <div class="campo"><input name="key" value="" maxlenght="60" type="text" class="forms"></div>
-
-                            </div>
-
-                            <div class="nome_campo contrato">Contrato com Correios?: </div>
-                            <div class="campo contrato"><input name="contrato" value="true" type="radio" class="forms contrato sim"> sim <input name="contrato" value="false" type="radio" class="forms contrato nao" checked> n&atilde;o</div>
-                            <div class="contrato-sim">
-                                <div class="nome_campo" >Primeiros 8 digitos CNPJ (ex:01944380): </div>
-                                <div class="campo"><input name="cnpj" value="" maxlenght="60" type="text" class="forms"></div>
-
-                                <div class="nome_campo" >Codigo administrativo (ex:11051213): </div>
-                                <div class="campo"><input name="cod_adm" value="" maxlenght="60" type="text" class="forms"></div>
-                            </div>
-
-                            <div class="nome_campo" >CEP de origem/Centro de Distribuicao (ex:20511000): </div>
-                            <div class="campo"><input name="cep" value="" maxlenght="60" type="text" class="forms"></div>
-
-                            <div class="nome_campo" >Percentual a ser adicionado (ex: 20%): </div>
-                            <div class="campo percentual">
-                                <select name="percentual" class="forms">
-                                    <option value="0" selected>0%</option>
-                                    <option value="5">5%</option>
-                                </select>
-                                </select>
-                            </div>
-
-                            <p>Selecione o servi&ccedil;o:</p>
-
-                            <div class="nome_campo sedex" >[ Sedex ] </div>
-                            <div class="campo sedex"><input name="sedex" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
-
-                            <div class="nome_campo sedex40436" >[ Sedex 40436 ] </div>
-                            <div class="campo sedex40436"><input name="sedex40436" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
-
-                            <div class="nome_campo esedex" >[ E-sedex ]</div>
-                            <div class="campo esedex"><input name="esedex" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
-
-                            <div class="nome_campo pac" >[ PAC ]</div>
-                            <div class="campo pac"><input name="pac" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
-
-                            </br>
-
-                            <div class="botao"><input class="botao-enviar" title="Send" type="submit" value="Gerar"></div>
-
-                        </form>
-                    </div></div>
-            </td></tr></table></center>
+</div>
 <script type="text/javascript">
     jQuery(".campo.esedex").fadeOut();
     jQuery(".campo.pac").fadeOut();
@@ -99,87 +282,87 @@
     jQuery(".nome_campo.esedex").fadeOut();
     jQuery(".api-sim").fadeOut();
     jQuery( ".nome_campo.sedex" ).click(
-        function() {
-            jQuery(".campo.sedex input").val("s");
-            jQuery(".campo.esedex input").val("");
-            jQuery(".campo.pac input").val("");
-            jQuery(".campo.sedex40436 input").val("");
-            jQuery( ".nome_campo.pac" ).css("background-color", "white");
-            jQuery( ".nome_campo.esedex" ).css("background-color", "white");
-            jQuery( ".nome_campo.sedex40436" ).css("background-color", "white");
-            jQuery( ".nome_campo.sedex" ).css("background-color", "lightblue");
-        });
+            function() {
+                jQuery(".campo.sedex input").val("s");
+                jQuery(".campo.esedex input").val("");
+                jQuery(".campo.pac input").val("");
+                jQuery(".campo.sedex40436 input").val("");
+                jQuery( ".nome_campo.pac" ).css("background-color", "white");
+                jQuery( ".nome_campo.esedex" ).css("background-color", "white");
+                jQuery( ".nome_campo.sedex40436" ).css("background-color", "white");
+                jQuery( ".nome_campo.sedex" ).css("background-color", "lightblue");
+            });
     jQuery( ".nome_campo.esedex" ).click(
-        function() {
-            jQuery(".campo.sedex input").val("");
-            jQuery(".campo.esedex input").val("s");
-            jQuery(".campo.pac input").val("");
-            jQuery(".campo.sedex40436 input").val("");
-            jQuery( ".nome_campo.pac" ).css("background-color", "white");
-            jQuery( ".nome_campo.sedex40436" ).css("background-color", "white");
-            jQuery( ".nome_campo.esedex" ).css("background-color", "lightblue");
-            jQuery( ".nome_campo.sedex" ).css("background-color", "white");
-        });
+            function() {
+                jQuery(".campo.sedex input").val("");
+                jQuery(".campo.esedex input").val("s");
+                jQuery(".campo.pac input").val("");
+                jQuery(".campo.sedex40436 input").val("");
+                jQuery( ".nome_campo.pac" ).css("background-color", "white");
+                jQuery( ".nome_campo.sedex40436" ).css("background-color", "white");
+                jQuery( ".nome_campo.esedex" ).css("background-color", "lightblue");
+                jQuery( ".nome_campo.sedex" ).css("background-color", "white");
+            });
     jQuery( ".nome_campo.sedex40436" ).click(
-        function() {
-            jQuery(".campo.sedex input").val("");
-            jQuery(".campo.sedex40436 input").val("s");
-            jQuery(".campo.pac input").val("");
-            jQuery(".campo.esedex input").val("");
-            jQuery( ".nome_campo.pac" ).css("background-color", "white");
-            jQuery( ".nome_campo.esedex" ).css("background-color", "white");
-            jQuery( ".nome_campo.sedex40436" ).css("background-color", "lightblue");
-            jQuery( ".nome_campo.sedex" ).css("background-color", "white");
-        });
+            function() {
+                jQuery(".campo.sedex input").val("");
+                jQuery(".campo.sedex40436 input").val("s");
+                jQuery(".campo.pac input").val("");
+                jQuery(".campo.esedex input").val("");
+                jQuery( ".nome_campo.pac" ).css("background-color", "white");
+                jQuery( ".nome_campo.esedex" ).css("background-color", "white");
+                jQuery( ".nome_campo.sedex40436" ).css("background-color", "lightblue");
+                jQuery( ".nome_campo.sedex" ).css("background-color", "white");
+            });
     jQuery( ".nome_campo.pac" ).click(
-        function() {
-            jQuery(".campo.sedex input").val("");
-            jQuery(".campo.esedex input").val("");
-            jQuery(".campo.sedex40436 input").val("");
-            jQuery(".campo.pac input").val("s");
-            jQuery( ".nome_campo.pac" ).css("background-color", "lightblue");
-            jQuery( ".nome_campo.esedex" ).css("background-color", "white");
-            jQuery( ".nome_campo.sedex40436" ).css("background-color", "white");
-            jQuery( ".nome_campo.sedex" ).css("background-color", "white");
-        });
+            function() {
+                jQuery(".campo.sedex input").val("");
+                jQuery(".campo.esedex input").val("");
+                jQuery(".campo.sedex40436 input").val("");
+                jQuery(".campo.pac input").val("s");
+                jQuery( ".nome_campo.pac" ).css("background-color", "lightblue");
+                jQuery( ".nome_campo.esedex" ).css("background-color", "white");
+                jQuery( ".nome_campo.sedex40436" ).css("background-color", "white");
+                jQuery( ".nome_campo.sedex" ).css("background-color", "white");
+            });
     jQuery( ".contrato.nao" ).click(
-        function() {
-            jQuery(".contrato-sim").fadeOut();
-            jQuery(".nome_campo.esedex").fadeOut();
-            jQuery(".nome_campo.sedex40436").fadeOut();
-            jQuery(".contrato-nao").fadeIn();
+            function() {
+                jQuery(".contrato-sim").fadeOut();
+                jQuery(".nome_campo.esedex").fadeOut();
+                jQuery(".nome_campo.sedex40436").fadeOut();
+                jQuery(".contrato-nao").fadeIn();
 
-        });
+            });
     jQuery( ".contrato.sim" ).click(
-        function() {
-            jQuery(".contrato-nao").fadeOut();
-            jQuery(".contrato-sim").fadeIn();
-            jQuery(".nome_campo.esedex").fadeIn();
-            jQuery(".nome_campo.sedex40436").fadeIn();
+            function() {
+                jQuery(".contrato-nao").fadeOut();
+                jQuery(".contrato-sim").fadeIn();
+                jQuery(".nome_campo.esedex").fadeIn();
+                jQuery(".nome_campo.sedex40436").fadeIn();
 
-        });
+            });
     jQuery( ".api.nao" ).click(
-        function() {
-            jQuery(".api-sim").fadeOut();
-            jQuery(".api-nao").fadeIn();
+            function() {
+                jQuery(".api-sim").fadeOut();
+                jQuery(".api-nao").fadeIn();
 
-        });
+            });
     jQuery( ".api.sim" ).click(
-        function() {
-            jQuery(".api-nao").fadeOut();
-            jQuery(".api-sim").fadeIn();
+            function() {
+                jQuery(".api-nao").fadeOut();
+                jQuery(".api-sim").fadeIn();
 
-        });
+            });
 </script>
-<style>
-    .nome_campo.sedex{cursor:pointer;width:80px;padding-left:8px;}
-    .nome_campo.sedex40436{cursor:pointer;width:90px;padding-left:8px;}
-    .nome_campo.esedex{cursor:pointer;width:80px;padding-left:8px;}
-    .nome_campo.pac{cursor:pointer; width:80px;padding-left:8px;}
-    .nome_campo{padding-top: 10px;   border-radius: 5px;}
-    body {background-color:lightblue;}
-    .formulario {background-color:white;border-radius:10px;}
-    .conteudo {padding-left:20px;padding-bottom:20px;}
-</style>
-</body>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-70408160-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+​</body>
 </html>

@@ -653,5 +653,5 @@ if($_POST['api']=="true"){
 
     echo "<div class='resultado2'>Finalizado cadastro dos valores " . sendPostData($url_send_freights, $str_data_freights) . "</div>";
 }
-echo "<style>body {background-color: lightblue;} .link, .resultado1, .resultado2 { background-color: white; border-radius: 5px;width: 600px;height: 60px;margin-top: 20px; }</style>";
+echo "<style>body {background-image: url(/backlogin.jpg);} .link, .resultado1, .resultado2 { background-color: white; border-radius: 5px;width: 600px;height: 60px;margin-top: 20px; }</style>";
 ?>

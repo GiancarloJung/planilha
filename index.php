@@ -193,7 +193,7 @@
 <body>
 <div class="container">
 
-    <form id="signup">
+    <form id="signup" action="correios-vtex.php" enctype="multipart/form-data" id="planilha" method="post" name="planilha">
 
         <div class="header">
 

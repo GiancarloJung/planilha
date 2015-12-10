@@ -89,7 +89,7 @@ function sendPostData($url_ws, $post){
     return $result;
 }
 
-echo "<div class='resultado1'>Finalizado cadastro da transportadora (" . sendPostData($url_send_carrier, $str_data_carrier).")</div>";
+//echo "<div class='resultado1'>Finalizado cadastro da transportadora (" . sendPostData($url_send_carrier, $str_data_carrier).")</div>";
 
 echo "<div class='resultado2'>Cadastrando os valores... " . sendPostData($url_send_freights, $str_data_freights) . "</div>";
 

@@ -11,28 +11,18 @@ namespace HTTP
     {        
         private static void start_post(string strPage, string strBuffer)
         {
-            //Our postvars
             byte[]  buffer = Encoding.ASCII.GetBytes(strBuffer);
-            //Initialization
             HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(strPage);
-            //Our method is post, otherwise the buffer (postvars) would be useless
             WebReq.Method = "POST";
-            //We use form contentType, for the postvars.
             WebReq.ContentType ="application/x-www-form-urlencoded";
-            //The length of the buffer (postvars) is used as contentlength.
             WebReq.ContentLength = buffer.Length;
-            //We open a stream for writing the postvars
             Stream PostData = WebReq.GetRequestStream();
-            //Now we write, and afterwards, we close. Closing is always important!
             PostData.Write(buffer, 0, buffer.Length);
             PostData.Close();
-            //Get the response handle, we have no true response yet!
             HttpWebResponse WebResp = (HttpWebResponse)WebReq.GetResponse();
-            //Let's show some information about the response
             Console.WriteLine(WebResp.StatusCode);
             Console.WriteLine(WebResp.Server);
            
-            //Now, we read the response (the string), and output it.
             Stream Answer = WebResp.GetResponseStream();
             StreamReader _Answer = new StreamReader(Answer);
             Console.WriteLine(_Answer.ReadToEnd());
@@ -68,7 +58,7 @@ namespace HTTP
             }
             string delimiter = ",";
             string[][] output = new string[][]{
-            new string[]{text} /*add the values that you want inside a file. Mostly this function can be used in a foreach loop.*/
+            new string[]{text} 
             };
             int length = output.GetLength(0);
             StringBuilder sb = new StringBuilder();

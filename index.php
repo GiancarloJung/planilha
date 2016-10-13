@@ -271,6 +271,9 @@
             <div class="nome_campo pac" ><p>-  PAC  </p></div>
             <div class="campo pac"><input name="pac" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
 
+            <div class="nome_campo sedex10" ><p>-  Sedex10  </p></div>
+            <div class="campo sedex10"><input name="sedex10" value="" maxlenght="60" type="text" class="forms">Digite: sim</div>
+
 
             <!--<input type="email" placeholder="e-mail" autofocus />
             <input type="password" placeholder="Password" />-->
@@ -283,6 +286,7 @@
 
 </div>
 <script type="text/javascript">
+    jQuery(".campo.sedex10").fadeOut();
     jQuery(".campo.esedex").fadeOut();
     jQuery(".campo.pac").fadeOut();
     jQuery(".campo.sedex").fadeOut();
@@ -322,6 +326,18 @@
                 jQuery( ".nome_campo.pac" ).css("background-color", "white");
                 jQuery( ".nome_campo.esedex" ).css("background-color", "white");
                 jQuery( ".nome_campo.sedex40436" ).css("background-color", "lightblue");
+                jQuery( ".nome_campo.sedex" ).css("background-color", "white");
+            });
+    jQuery( ".nome_campo.sedex10" ).click(
+            function() {
+                jQuery(".campo.sedex input").val("");
+                jQuery(".campo.sedex40436 input").val("");
+                jQuery(".campo.sedex10 input").val("s");
+                jQuery(".campo.pac input").val("");
+                jQuery(".campo.esedex input").val("");
+                jQuery( ".nome_campo.pac" ).css("background-color", "white");
+                jQuery( ".nome_campo.esedex" ).css("background-color", "white");
+                jQuery( ".nome_campo.sedex10" ).css("background-color", "lightblue");
                 jQuery( ".nome_campo.sedex" ).css("background-color", "white");
             });
     jQuery( ".nome_campo.pac" ).click(

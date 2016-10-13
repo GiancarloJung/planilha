@@ -29,6 +29,11 @@ if($hasContract=="true"){
     }else{
         $esedex = false;
     }
+    if($_POST['sedex10']!=""){
+        $sedex10 = true;
+    }else{
+        $sedex10 = false;
+    }
 }else{
     $esedex = false;
     $pacc = false;
@@ -57,9 +62,43 @@ $availableServices = array(
     array('cod' => '41068','service' => 'PAC Com Contrato', 'active' => $pacc),
     array('cod' => '81019','service' => 'E-Sedex Com Contrato', 'active' => $esedex),
     array('cod' => '40436','service' => 'Sedex 40436', 'active' => $sedex40436),
-    array('cod' => '40215','service' => 'Sedex 10', 'active' => false),
+    array('cod' => '40215','service' => 'Sedex 10', 'active' => $sedex10),
     array('cod' => '40290','service' => 'Sedex HOJE', 'active' => false),
     array('cod' => '40045','service' => 'Sedex a Cobrar', 'active' => false)
+);
+$zipCodes10 = array(
+    array('AC - Capital',01000000,09999999,04811210),
+    array('AL - Capital',10000000,19999999,14801000),
+    array('AM - Capital',57000000,57099999,57035830),
+    array('AP - Capital',69000000,69099999,69083350),
+    array('BA - Capital',68900000,68911999,68909167),
+    array('CE - Capital',40000000,42599999,40335505),
+    array('DF - Capital',70000000,72799999,71900500),
+    array('DF - Interior',73000000,73699999,73090135),
+    array('ES - Capital',29000000,29099999,29060017),
+    array('GO - Capital',74000000,74899999,74343610),
+    array('MA - Capital',65000000,65109999,65072405),
+    array('MG - Capital',30000000,31999999,31540473),
+    array('MS - Capital',79000000,79124999,79104570),
+    array('MT - Capital',78000000,78099999,78048245),
+    array('PA - Capital',66000000,66999999,66820820),
+    array('PB - Capital',58000000,58099999,58028860),
+    array('PE - Capital',50000000,52999999,52031216),
+    array('PI - Capital',64000000,64099999,64062080),
+    array('PR - Capital',80000000,82999999,80510330),
+    array('RJ - Interior',20000000,23799999,23591450),
+    array('RJ - Capital',23800000,28999999,28035005),
+    array('RN - Interior',59000000,59139999,59123029),
+    array('RN - Capital',59140000,59999999,59612300),
+    array('RO - Capital',76800000,76834999,76801016),
+    array('RR - Capital',69300000,69339999,69310030),
+    array('RS - Interior',90000000,91999999,91330730),
+    array('RS - Capital',92000000,99999999,94475770),
+    array('SC - Interior',88000000,88099999,88066410),
+    array('SC - Capital',88100000,89999999,88818286),
+    array('SE - Capital',49000000,49098999,49027390),
+    array('SP - Capital',01000000,09999999,01303001),
+    array('TO - Capital',77000000,77249999,77064318),
 );
 $zipCodes = array(
     array('SP - Capital','01000000','09999999','04811210'),
@@ -368,6 +407,30 @@ $weightsEsedex = array(
     array(13.001,14),
     array(14.001,15),
 );
+$weightsSedex10 = array(
+  array(0.0, 0.3),
+  array(0.301, 0.5),
+  array(0.501, 0.75),
+  array(0.751, 1.0),
+  array(1.001, 1.5),
+  array(1.501, 2.0),
+  array(2.001, 2.5),
+  array(2.501, 3.0),
+  array(3.001, 3.5),
+  array(3.501, 4.0),
+  array(4.001, 4.5),
+  array(4.501, 5.0),
+  array(5.001, 6.0),
+  array(6.001, 7.0),
+  array(7.001, 8.0),
+  array(8.001, 9.0),
+  array(9.001, 10.0),
+  array(10.001, 11.0),
+  array(11.001, 12.0),
+  array(12.001, 13.0),
+  array(13.001, 14.0),
+  array(14.001, 15.0),
+);
 $methodLabels = array(
     '40010' => 'Sedex',
     '40096' => 'Sedex',
@@ -552,6 +615,33 @@ foreach($zipCodes as $zipcode){
 if($availableServices[4]['active']){
     foreach($esedexZipCodes as $zipcode){
         foreach($weightsEsedex as $weight){
+            try{
+                $params->sCepDestino = $zipcode[3];
+                $params->nVlPeso = $weight[1];
+                //$before = microtime(true);
+                $response = $client->CalcPrecoPrazo($params);
+                //echo 'WebService Latency: '.(int)((microtime(true)-$before)*1000)."ms\n";
+                if($response->CalcPrecoPrazoResult->Servicos->cServico->Erro == '0')
+                    fputcsv($matrixRateFile,array($zipcode[1],$zipcode[2],$weight[0]*1000,$weight[1]*1000,str_replace(",",".",$response->CalcPrecoPrazoResult->Servicos->cServico->Valor),(int)($_POST["percentual"]),'0','100000000',(int)($response->CalcPrecoPrazoResult->Servicos->cServico->PrazoEntrega).'.00:00:00','BRA','0',1,''));
+                else
+                    echo $response->CalcPrecoPrazoResult->Servicos->cServico->MsgErro ." - ".$response->CalcPrecoPrazoResult->Servicos->cServico->Codigo ." - ".$zipcode[1]." a ".$zipcode[2]." - ".$weight[0]." a ".$weight[1]."\n";
+            }
+            catch (SoapFault $e){
+                echo "<pre>SoapFault: ".print_r($e, true)."</pre>\n";
+                break 2;
+            }
+            catch (Exception $e){
+                echo "<pre>Exception: ".print_r($e, true)."</pre>\n";
+                break 2;
+            }
+        }
+    }
+}
+
+// Sedex 10
+if($availableServices[6]['active']){
+    foreach($zipCodes10 as $zipcode){
+        foreach($weightsSedex10 as $weight){
             try{
                 $params->sCepDestino = $zipcode[3];
                 $params->nVlPeso = $weight[1];

@@ -1,1 +1,1 @@
-ZipCodeStart,ZipCodeEnd,WeightStart,WeightEnd,AbsoluteMoneyCost,PricePercent,PriceByExtraWeight,MaxVolume,TimeCost,Country,operationType,restrictedFreights
+ZipCodeStart,ZipCodeEnd,WeightStart,WeightEnd,AbsoluteMoneyCost,PricePercent,PriceByExtraWeight,MaxVolume,TimeCost,Country,MinimumValueInsurance,operationType,restrictedFreights
